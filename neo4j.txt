@@ -1,0 +1,6 @@
+create(文在寅:PER{name:'文在寅', cat:'PER'})
+create(安倍晋三:PER{name:'安倍晋三', cat:'PER'})
+create(习近平:PER{name:'习近平', cat:'PER'})
+create(文在寅)-[:同级]->(安倍晋三)
+create(习近平)-[:朋友]->(安倍晋三)
+create(习近平)-[:朋友]->(文在寅)

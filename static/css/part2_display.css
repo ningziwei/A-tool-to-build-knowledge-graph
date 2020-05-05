@@ -1,0 +1,74 @@
+/* 可选颜色列表的格式 */
+.color-index {
+	position: absolute;
+	right: 20px;
+	top: 15px;
+}
+.color-shell {
+	display: inline-block;
+	overflow: auto;
+	cursor: pointer;
+	font-size: 16px;
+	padding: 2px 6px 1px 6px;
+	margin: 3 0 0 5px;
+	border-radius: 3px;
+	box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+.color-shell:hover {
+	-webkit-animation-name: shineGrey; 
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite; 
+}
+.color-current {
+	-webkit-animation-name: shineGreyStatic; 
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite; 
+}
+
+.exh-shell {
+	display: inline-block;
+	margin: 0 6px 2px 0px;
+	border: 1px solid black;
+}
+.word-div-ent, .word-div-attr {
+	display: inline-block;
+	padding: 0 0.1em 0 0.1em;
+	margin: 0 0.04em 0;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.16), 0 3px 8px 0 rgba(0, 0, 0, 0.12);
+	font-size: 18px;
+	cursor: pointer;
+	transition: all 100ms ease-out;
+}
+.word-div-ent:hover, .word-div-attr:hover {
+	-webkit-animation-name: shineRed; 
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite; 
+}
+.unident {
+	margin: 0 1px 2px 1px;
+}
+.ctrl-word0 {
+	-webkit-animation-name: shineRed; 
+    -webkit-animation-duration: 1s;
+    -webkit-animation-iteration-count: infinite; 
+}
+@-webkit-keyframes  shineRed {
+	from { -webkit-box-shadow: 0 0 5px red; }
+	50% { -webkit-box-shadow: 0 0 10px red; }
+	to { -webkit-box-shadow: 0 0 5px red; }
+}
+@-webkit-keyframes  shineRedStatic {
+	from { -webkit-box-shadow: 0 0 10px red; }
+	50% { -webkit-box-shadow: 0 0 10px red; }
+	to { -webkit-box-shadow: 0 0 10px red; }
+}
+@-webkit-keyframes shineGrey {
+	from { -webkit-box-shadow: 0 0 8px #3f3f3f; }
+	50% { -webkit-box-shadow: 0 0 14px #3f3f3f; }
+	to { -webkit-box-shadow: 0 0 8px #3f3f3f; }
+}
+@-webkit-keyframes shineGreyStatic {
+	from { -webkit-box-shadow: 0 0 8px #3f3f3f; }
+	50% { -webkit-box-shadow: 0 0 8px #3f3f3f; }
+	to { -webkit-box-shadow: 0 0 8px #3f3f3f; }
+}

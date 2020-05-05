@@ -1,0 +1,424 @@
+#polish-triple {
+	background-color: white;
+	width: 460px;
+	height: 530px;
+	text-align: left;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	padding-top: 15px;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 10px;
+	margin-top: 8px;
+	margin-left: 8px;
+	overflow: auto;
+	display: inline-block;
+	position: relative;
+	left: 50px;
+}
+#polish-triple-ent, #polish-triple-attr {
+	height: 200px;
+	width: 420px;
+	overflow: auto;
+	border: 1px solid;
+	margin-top: 7;
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.15);
+	border-radius: 4px;
+	text-align: left;
+	position: relative;
+	z-index: 1;
+}
+.triple-title-container {
+	background-color: #b0b0b0;
+    position: relative;
+    width: 321px;
+	position:relative;
+    right: -24px;
+}
+.triple-title {
+	display: inline-block;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 600;
+	border: 2px solid white;
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.15);
+	padding: 1px;
+	width:107px;
+}
+.triple-content {
+	height: 169.5px;
+	overflow: auto;
+}
+.triple-line {
+	width: 408px;
+	text-align: left;
+	margin-top: 2px;
+	padding: 0;
+	display: inline-block;
+	transition: all 0.2s;
+	position: relative;
+
+}
+.triple-line:hover {
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.15);
+}
+.triple-num {
+	display: inline-block;
+	width: 24;
+	text-align: center;
+	font-size: 12px;
+	position: relative;
+	top:-1px;
+}
+.e1, .r, .e2 {
+	width: 107px;
+	text-align: center;
+	padding: 1px 2px 0px;
+	margin: 0;
+	font-size: 15px;
+	border: 1px solid white;
+	box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.15);
+	cursor: pointer;
+	position: relative;
+}
+.c {
+	width: 24px;
+	text-align: center;
+	padding: 0.1em;
+	font-size: 15px;
+	border: 0px solid #ddd;
+	cursor: pointer;
+	position: absolute;
+	top: 1px;
+	right: 37px;
+}
+.unselected-triple {
+	height: 22px;
+	position: absolute;
+	top: 2px;
+	right: 17px;
+	content: url("/static/image/mark1.svg");
+}
+.unselected-triple:hover {
+	content: url("/static/image/mark2.svg");
+	cursor: pointer;
+}
+.selected-triple {
+	height: 22px;
+	position: absolute;
+	top: 2px;
+	right: 17px;
+	content: url("/static/image/mark2.svg");
+}
+.selected-triple:hover {
+	content: url("/static/image/mark2.svg");
+	cursor: pointer;
+}
+
+.shut {
+	display:inline-block;
+	cursor: pointer;
+	color: #BEBEBE;
+	margin-left: 1px;
+	position: absolute;
+    right: 7px;
+    top: 3px;
+}
+.shut:hover {
+	color: #646464;
+	font-weight: bold;
+}
+.add-triple {
+	position:absolute;
+	height: 22px;
+	top: 4;
+	right: -46;
+}
+.add-triple:hover {
+	cursor: pointer;
+	content: url("/static/image/增加2.svg");
+}
+.chooseEntityCategory-index-e1, .chooseEntityCategory-index-e2 {
+	z-index: 2;
+	background-color: white;
+	position: absolute;
+	top: 27px;
+	padding: 0 4 4 0;
+	margin-bottom: 3px;
+	box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.15);
+    border: 1px solid #8f8f8f;
+    border-radius: 5px;
+    max-width: 202px;
+    max-height: 70px;
+    overflow: auto;
+}
+.chooseEntityCategory-index-e1 {
+	left: 2.5px;
+}
+.chooseEntityCategory-index-e2 {
+	right: -1px;
+}
+.req-tri {
+    width: 102px;
+    bottom: 14px;
+	border: 2px solid #565555;
+    border-radius: 8px;
+    box-shadow: 1px 1px 1px #abafb0;
+    height: 30px;
+    padding: 0 4px;
+    font-size: 14px;
+    letter-spacing: 1px;
+    outline: none;
+    position: absolute;
+}
+#req-tri-attr {
+	right: 110px;
+}
+#req-tri-ent {
+	right: 216px;
+}
+#tips {
+    height: 28px;
+    position: absolute;
+    left: 116px;
+    bottom: 15px;
+}
+#tips:hover {
+	content: url("/static/image/bangzhu2.svg");
+	cursor: pointer;
+}
+#tips-text {
+	position: absolute;
+	width: 200px;
+	height: 200px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	overflow: auto;
+	border-radius: 8px;
+	bottom: 50px;
+	left: 70px;
+	z-index: 2;
+	background-color: white;
+}
+#tips-title {
+	margin: 0px;
+	padding-top: 6px;
+	padding-bottom:3px;
+	font-size: 16px;
+	text-align: center;
+	position: relative;
+	background-color: #ededed;
+}
+#tips-text span {
+	position: absolute;
+	top: 2.5px;
+	right: 6px;
+}
+#tips-content {
+	height: 168px;
+	overflow: auto;
+	padding-left: 6px;
+	padding-top: 4px;
+	padding-bottom: 4px;
+}
+#tips-text p {
+	margin:0;
+	font-size: 12px;
+}
+.visualize {
+	height: 35px;
+	position: absolute;
+	right: 20px;
+	bottom: 10px;
+}
+#ED_CR {
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+}
+.visualize:hover {
+	content: url("/static/image/eye2.svg");
+	cursor: pointer;
+}
+
+
+.polish-reference {
+	background-color: white;
+	width: 670px;
+	height: 530px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	padding: 15 20 10;
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-bottom: 12px;
+	margin-top: 8px;
+	margin-left: 6px;
+	overflow: auto;
+	display: inline-block;
+	position: relative;
+	left: 50px;
+}
+#polish-reference-edit {
+	width: 190px;
+	height: 198px;
+	border-radius: 5px;
+	border: 1px solid;
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.15);
+	margin-top: 0.5em;
+}
+#polish-reference-text {
+	width: 632px;
+	height: 215px;
+	overflow: auto;
+	border-radius: 5px;
+	border: 1px solid;
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.15);
+	margin:7 0;
+	display: inline-block;
+}
+#reference-title1 {
+	text-align: center;
+	background-color: antiquewhite;
+	font-size: 18px;
+	font-family: Microsoft YaHei;
+	padding:3px;
+	border-radius: 5px 5px 0 0;
+}
+#reference-content1 {
+	padding-left: 3px;
+	height: 181.5px;
+	overflow: auto;
+	position: relative;
+}
+#reference-content1 div {
+	display: inline-block;
+}
+.highlight {
+	background-color: #cfcfcf;
+	box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.10);
+}
+#orig-text {
+	font-size: 18px;
+}
+
+/* 写入字典图标 */
+.w-dic {
+	position: absolute;
+	height: 22px;
+	right: 2.5px;
+	top: 3px;
+}
+.w-dic:hover {
+	content: url("/static/image/mark2.svg");
+	cursor: pointer;
+}
+.w-dic:active {
+	content: url("/static/image/mark2.svg");
+}
+/* 参考2、3的列表格式 */
+.itemDivReference {
+	font-size: 15px;
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.15);
+	border: 1px solid white;
+	text-align: center;
+	padding-right: 2px;
+	padding-left: 2px;
+	padding-top: 1px;
+}
+.lists.reference {
+	padding: 0;
+	min-height: 25px;
+}
+
+/* 参考2私有格式 */
+#polish-reference-container2 {
+	width: 630px;
+	position: relative;
+}
+#polish-reference-entity {
+	width: 312.5px;
+	height: 183px;
+	border-radius: 5px;
+	border: 1px solid;
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.15);
+	display: inline-block;
+	overflow: auto;
+	position: relative;
+}
+#reference-title2 {
+	text-align: center;
+	background-color: antiquewhite;
+	font-size: 18px;
+	padding: 1px;
+	border-radius: 5px 5px 0 0;
+}
+#reference-ent {
+    overflow: auto;
+    height: 153.5px;
+}
+
+#polish-reference-attribute {
+	width: 312.5px;
+	height: 183px;
+	border-radius: 5px;
+	border: 1px solid;
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.15);
+	display: inline-block;
+	overflow: auto;
+	position: absolute;
+	right: -2px;
+}
+#reference-title3 {
+	text-align: center;
+	background-color: antiquewhite;
+	font-size: 18px;
+	padding: 1px;
+	border-radius: 5px 5px 0 0;
+}
+#add-relation {
+	position: absolute;
+	top: 3.5px;
+	right: 25px;
+	height: 20px;
+}
+#add-relation:hover {
+	content: url("/static/image/增加2.svg");
+	cursor: pointer;
+}
+#reference-attr {
+	overflow: auto;
+	height: 153.5px;
+}
+.shell-relation {
+	position: relative;
+	display: inline-block;
+}
+.r-relation, .new-r-relation {
+	font-size: 15px;
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.15);
+	border: 1px solid #ffffff;
+	text-align: center;
+	padding-right: 2px;
+	padding-left: 2px;
+	padding-top: 1px;
+	padding-bottom: 1px;
+	margin-left: 2px;
+	margin-top: 2px;
+}
+.new-r-relation {
+	padding-right: 16px;
+	width: 72px;
+	background: #cececea1;
+}
+#relation-delete {
+	height: 16px;
+	position: absolute;
+	right: 1px;
+	top: 7px;
+}
+#relation-delete:hover {
+	content: url("/static/image/删除2.svg");
+	cursor: pointer;
+}
+.btn.change-triple {
+	margin-top: 11px;
+	padding: 2px;
+}

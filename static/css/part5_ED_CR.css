@@ -1,0 +1,115 @@
+.container-CR, .container-ED {
+	background-color: white;
+	width: 1140px;
+	min-height: 300px;
+	text-align: left;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	padding: 15 20px 18;
+	margin-top: 8px;
+	margin-left: 8px;
+	margin-right: 8px;
+	position: relative;
+	left: 50px;
+}
+
+#showcase-CR, #showcase-ED {
+	width: 1100px;
+	overflow: auto;
+	border: 1px solid;
+	margin-top: 7px;
+	box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.15);
+	border-radius: 4px;
+}
+
+.ED_CR-title-line {
+	font-size: 15px;
+	border: 1px solid black;
+}
+.ED_CR-title-entity {
+	display: inline-block;
+	width: 80px;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+}
+.ED_CR-title-source {
+	display: inline-block;
+	width: 360px;
+	padding: 7 2px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+}
+.ED_CR-title-result {
+	position: relative;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	overflow: auto;
+}
+.ED_CR-title-discription {
+	width: 547px;
+	padding: 7 2px;
+	text-align: center;
+	font-size: 20px;
+	font-weight: bold;
+	border-left: 1px solid black;
+}
+
+.ED_CR-line {
+	font-size: 15px;
+	border: 1px solid black;
+}
+.ED_CR-line td {
+	overflow: auto;
+	vertical-align: middle;
+}
+.ED_CR-entity {
+	display: inline-block;
+	width: 80px;
+	text-align: center;
+}
+.ED_CR-source {
+	display: inline-block;
+	width: 360px;
+	height: 45px;
+	padding: 2px;
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+}
+.ED_CR-result {
+	display: inline-block;
+	position: relative;
+	padding-right: 18px;
+	width: 110;
+	text-align: center;
+	max-height: 45px;
+	overflow: auto;
+}
+.ED_CR-discription {
+	display: inline-block;
+	width: 547px;
+	height: 45px;
+	padding: 2px;
+	border-left: 1px solid black;
+}
+.ED_CR-result_select {
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    background: url("/static/image/gengduo1.svg") no-repeat scroll right center;
+    background-size: 20px 20px;
+    padding-left: 20px;
+    height: 20px;
+    width: 18px;
+    border: 0;
+    position: absolute;
+    top: 1px;
+    right: 3px;
+}
+.ED_CR-result_select:hover {
+	cursor: pointer;
+	background: url("/static/image/gengduo2.svg") no-repeat scroll right center;
+	background-size: 20px 20px;
+}

@@ -1,0 +1,21 @@
+
+  <div style = "position:relative;">
+	<div class="ent-l-title1" id="ent-che-title" onclick="show_hide('che','res')">实体置信度</div>
+	<div class="ent-r-title0" id="ent-res-title" onclick="show_hide('res','che')">实体共指</div>
+	<img class="che che-stop" id="che-run" title="计算实体置信度" onclick="play_check()">
+	<div id="che-state" style="display:none;">stop</div>
+	<div id="che-dirty" style="display:none;">false</div>
+	<img class="res res-stop" id="res-run" title="搜索近义词" onclick="play_resolve()">
+	<div id="res-state" style="display:none;">stop</div>
+	<div id="res-dirty" style="display:none;">false</div>
+  </div>
+
+  <div class ="che" id="e-check-list"></div>
+  <div class ="che" id="check-graph">
+	<svg id = "check-svg"></svg>
+  </div>
+
+  <div class ="res" id="e-resolve-list"></div>
+  <div class ="res" id="resolve-graph">
+	<svg id = "resolve-svg"></svg>
+  </div>

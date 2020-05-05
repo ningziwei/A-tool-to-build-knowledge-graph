@@ -1,0 +1,269 @@
+<html>
+<head>
+<!--工具包-->
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/axios.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/qs.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/d3.v4.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/d3.legend.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/d3-selection-multi.v1.min.js') }}"></script>
+<!--自写模块-->
+<script type="text/javascript" src="{{ url_for('static', filename='js/part_transition.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/part0_setting.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/part1_text.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/part2_display.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/part3_entity.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/part4_triple.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/part5_ED_CR.js') }}"></script>
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/part_others.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/part_setting.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/part2_display.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/part_entity.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/part_triple.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/part5_ED_CR.css')}}">
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='css/part6_KG.css')}}">
+</head>
+
+
+<body>
+<div class="main-container">
+
+  <img id="set" src="/static/image/设置.svg" title="设置" data-toggle="modal" data-target="#myModal">
+  <!--文本抓取模块-->
+  <div class="container-inputText">
+    <h1>文本抓取</h1>
+    <hr>
+    <textarea id="input-text" placeholder="在此编辑文本或通过网址提取"></textarea>
+    <div id="input-cache" style="display:none"></div>
+    <div class="input-button">
+      <input type="email" id="input-url" placeholder="请输入网址">
+      <button type="button" class="btn btn-reptile" onclick="catch_text_button()">抓取</button>
+      <button type="button" class="btn btn-NER" onclick="NER_button()">实体/属性抽取</button>
+    </div>
+  </div>
+  
+  <!--原文顺序展示实体抽取结果-->
+  <div id="container-resultInText-ent">
+    <h1>实体抽取结果</h1>
+    <hr>
+    <div id="resultInText-ent"></div>
+  </div>
+
+  <!--原文顺序展示属性抽取结果-->
+  <div id="container-resultInText-attr">
+    <h1>属性抽取结果</h1>
+    <hr>
+    <div id="resultInText-attr"></div>
+  </div>
+  
+  <!--展示已选实体-->
+  <div class="container-selectedThings">
+    <h1>已选内容</h1>
+    <hr>
+    <div class="selected-showcase">
+	  <div class="selected-title">已选实体</div>
+	  <div id="selected-ent"></div>
+	</div>
+	<div class="selected-showcase">
+	  <div class="selected-title">已选属性</div>
+	  <div id="selected-attr"></div>
+	</div>
+    <button class="btn btn-RE" onclick="RE_button()">关系抽取</button>
+  </div>
+
+  <!--实体处理模块-->
+  <div class="container-handleResultInLists">
+    <h1>选择关注的类别/实体</h1>
+    <hr>
+    <div id="attention-entity">
+	  <div style = "position:relative;">
+        <div class="ent-l-title1" id="title-ent" onclick="show_hide(this)">实体抽取结果</div>
+        <div class="ent-r-title0" id="title-attr" onclick="show_hide(this)">属性抽取结果</div>
+      </div>
+	  <div class ="ent" id="resultInLists-ent"></div>
+	  <div class ="attr" id="resultInLists-attr"></div>
+	</div>
+	
+    <div id="confidence-for-result">
+      <div style = "position:relative;">
+        <div class="ent-l-title1" id="title-ent" onclick="show_hide(this)">实体置信度</div>
+        <div class="ent-r-title0" id="title-attr" onclick="show_hide(this)">属性置信度</div>
+      </div>
+      <div class ="ent" id="confidenceInOrder-ent"></div>
+      <div class ="ent" id="check-graph">
+        <svg id = "ent-svg"></svg>
+      </div>
+      <div class ="attr" id="confidenceInOrder-attr"></div>
+      <div class ="attr" id="resolve-graph">
+        <svg id = "attr-svg"></svg>
+      </div>
+    </div>
+    <input class="ent ConThr" id ="ConThr-ent" type="text" placeholder="输入阈值">
+    <button class="ent btn ConBtn" id ="ConBtn-ent" onclick="item_shuttle(this)">一键选择</button>
+    <input class="attr ConThr" id ="ConThr-attr" type="text" placeholder="输入阈值">
+    <button class="attr btn ConBtn" id ="ConBtn-attr" onclick="item_shuttle(this)">一键选择</button>
+  </div>
+
+  <div class="container-polishTriples">
+    <div id="polish-triple">
+      <h1>校对界面</h1>
+      <hr>
+      <div id="polish-triple-ent"></div>
+	  <div id="polish-triple-attr"></div>
+      <div id="cache" style="display:none;">测试</div>
+      <div id="require-place">
+        <input class="req-tri" id="req-tri-ent" type="text" placeholder="关系选择语句">
+		<input class="req-tri" id="req-tri-attr" type="text" placeholder="属性选择语句">
+        <img id="tips" title="帮助" src="/static/image/bangzhu1.svg" onclick="tips()">
+		<button class="btn" id ="ED_CR" onclick="ED_CR_button()">一键选择</button>
+        <!--<img class="visualize" title="可视化" src="/static/image/eye1.svg" onclick="show_augment_KG()">-->
+      </div>
+    </div>
+    <div class="polish-reference">
+      <h1>参考信息</h1>
+      <hr>
+      <div id="polish-reference-container1">
+        <div id="polish-reference-text">
+          <div id="reference-title1">原文参考</div>
+          <div id="reference-content1"></div>
+        </div>
+      </div>
+      <div id="polish-reference-container2">
+        <div id="polish-reference-entity">
+          <div id="reference-title2">已选实体</div>
+          <div id="reference-ent"></div>
+          <!-- img class="w-dic" title="所有实体写入实体词典" src="/static/image/mark1.svg" onclick="write_into_entity_dic(this)"-->
+        </div>
+        <div id="polish-reference-attribute">
+          <div id="reference-title3">已选属性值</div>
+          <div id="reference-attr"></div>
+          <!-- id="add-relation" title="新增关系" src="/static/image/增加1.svg" onclick="add_relation()"-->
+          <!-- img class="w-dic" title="所有属性写入属性词典" src="/static/image/mark1.svg" onclick="write_into_attribute_dic(this)"-->
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container-ED">
+    <h1>实体消歧</h1>
+    <hr>
+	<table id="showcase-ED"></table>
+  </div>
+  
+  <div class="container-CR" style="display:none">
+    <h1>指代消解</h1>
+    <hr>
+	<table id="showcase-CR"></table>
+  </div>
+  
+  <div class="container-visualiedTriples">
+    <h1>增量信息</h1>
+    <img class="write-cloud" title="写入数据库" src="/static/image/shangchuan1.svg" onclick="click_download_KG_button()">
+    <hr>
+    <div class="graph-KG">
+      <svg id="svg" width="1098" height="558"></svg>
+    </div>
+	<div class="graph-attribute"></div>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/part6_KG.js') }}"></script>
+  </div>
+
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
+        </button>
+        <h4 class="modal-title" id="myModalLabel">
+          设置
+        </h4>
+      </div>
+      <div class="modal-body">
+        <div class="col">
+          <h4>实体字典</h4>
+          <div class="opt">
+            <input class="magic-radio" type="radio" name="radio0" id="r01" value="option1">
+            <label for="r01">本地文件</label>
+          </div>
+          <div class="opt">
+            <input class="magic-radio" type="radio" name="radio0" id="r02" value="option2">
+            <label for="r02">服务器上文件</label>
+          </div>
+          <div class="opt">
+            <input class="magic-radio" type="radio" name="radio0" id="r03" value="option3" checked>
+            <label for="r03">无</label>
+          </div>
+        </div>
+        <div class="col">
+          <h4>关系字典</h4>
+          <div class="opt">
+            <input class="magic-radio" type="radio" name="radio1" id="r11" value="option1">
+            <label for="r11">本地文件</label>
+          </div>
+          <div class="opt">
+            <input class="magic-radio" type="radio" name="radio1" id="r12" value="option2">
+            <label for="r12">服务器上文件</label>
+          </div>
+          <div class="opt">
+            <input class="magic-radio" type="radio" name="radio1" id="r13" value="option3" checked>
+            <label for="r13">无</label>
+          </div>
+        </div>
+        <div class="col">
+          <h4>实体抽取模型</h4>
+          <div class="opt">
+            <input class="magic-radio" type="radio" name="radio2" id="r21" value="option1">
+            <label for="r21">粗粒度模型</label>
+            <img class="help-img" id="help21" title="帮助" src="/static/image/bangzhu1.svg" onclick="set_help(this, p21)">
+          </div>
+          <div class="opt">
+            <input class="magic-radio" type="radio" name="radio2" id="r22" value="option2" checked>
+            <label for="r22">细粒度模型</label>
+            <img class="help-img" id="help22" title="帮助" src="/static/image/bangzhu1.svg" onclick="set_help(this, p22)">
+          </div>
+        </div>
+        <div class="col">
+          <h4>关系抽取模型</h4>
+          <div class="opt">
+            <input class="magic-radio" type="radio" name="radio3" id="r31" value="option1">
+            <label for="r31">关系类型1</label>
+          </div>
+          <div class="opt">
+            <input class="magic-radio" type="radio" name="radio3" id="r32" value="option2">
+            <label for="r32">关系类型2</label>
+          </div>
+          <div class="opt">
+            <input class="magic-radio" type="radio" name="radio3" id="r33" value="option3" checked>
+            <label for="r33">关系类型3</label>
+          </div>
+        </div>
+        <div class="col">
+          <h4>保存格式</h4>
+          <div class="opt">
+            <input class="magic-radio" type="radio" name="radio4" id="r41" value="option1">
+            <label for="r41">neo4j存储语句</label>
+          </div>
+          <div class="opt">
+            <input class="magic-radio" type="radio" name="radio4" id="r42" value="option2" checked>
+            <label for="r42">csv文件</label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" onclick="save_option()";>
+          保存设置
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+</html>
